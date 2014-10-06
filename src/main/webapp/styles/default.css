@@ -1,18 +1,56 @@
 body {
-	background-color: #F7FFCC;
+	background-color: #FFD175;
 	color: #003300;
 	font-family: sans-serif;
 	width: 60%;
-	margin: 0 auto;	
+	margin: 0 auto;
 }
 
 ul.menu {
-    list-style: none;
-    padding: 0;
-    margin: 10px 0px;
+	list-style: none;
+	padding: 0;
+	margin: 10px 0px;
 }
 
 ul.menu li {
-    display: inline;
-    margin-right: 10px;
+	display: inline;
+	margin-right: 10px;
 }
+
+ul.opsomming {
+	list-style: none;
+	padding: 0;
+	margin: 10px 0px;
+}
+
+ul.opsomming li:nth-child(even ) {
+	background-color: #E6B85C;
+	padding-bottom: 0.1em;
+	padding-top: 0.1em;
+}
+
+ul.opsomming li:nth-child(odd) {
+	background-color: #C2C2B8;
+}
+
+a:link {
+   	text-decoration: none;
+	color: #003300;	
+}
+
+a:hover {
+    text-decoration: none;
+	color: #883300;	
+}
+
+a:active {
+    text-decoration: none;
+	color: red;	
+}
+
+.fout {
+	color: red;
+}
+
+
+
