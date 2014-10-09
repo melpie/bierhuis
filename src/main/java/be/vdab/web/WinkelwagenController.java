@@ -13,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import be.vdab.entities.BestelBon;
 import be.vdab.entities.BestelBonLijn;
+import be.vdab.entities.BestelBonLijnPK;
 import be.vdab.entities.Bier;
 import be.vdab.services.BestellingService;
 import be.vdab.services.BierService;
@@ -62,7 +63,8 @@ public class WinkelwagenController {
 			Iterator<Bier> it = bierenInMandje.keySet().iterator();
 			while (it.hasNext()) { 
 				Bier bier = it.next(); 
-				bestelBonLijnen.add(new BestelBonLijn(bierenInMandje.get(bier),bier,bestelBon));
+				BestelBonLijnPK key = new BestelBonLijnPK(bestelBon, bier);
+				bestelBonLijnen.add(new BestelBonLijn(bierenInMandje.get(bier),key));
 			}
 		}
 		

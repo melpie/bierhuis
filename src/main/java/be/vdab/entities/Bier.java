@@ -44,7 +44,7 @@ public class Bier implements Serializable {
 	@ManyToOne(fetch = FetchType.LAZY, optional=false)
 	@JoinColumn(name = "soortid")
 	private Soort soort;
-	@OneToMany(mappedBy="bier", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy="key.bier", fetch = FetchType.EAGER)
 	@OrderBy("bestelbonId")
 	private Set<BestelBonLijn> bestelBonLijnen;
 

@@ -30,7 +30,7 @@ public class BestelBon implements Serializable {
 	@Postcode
 	private Integer postcode;
 	private String gemeente;
-	@OneToMany(mappedBy="bestelBon", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy="key.bestelBon", fetch = FetchType.EAGER)
 	@OrderBy("bierId")
 	private Set<BestelBonLijn> bestelBonLijnen;
 	

@@ -2,14 +2,23 @@ package be.vdab.entities;
 
 import java.io.Serializable;
 
-import javax.persistence.Column;
+import javax.persistence.Embeddable;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
+@Embeddable
 public class BestelBonLijnPK implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
-	@Column(name ="bestelbonid")
+	
+	@ManyToOne(fetch = FetchType.LAZY,optional=false)
+	@JoinColumn(name = "bestelbonid")
 	private BestelBon bestelBon;
-	@Column(name ="bierid")
+	
+	@ManyToOne(fetch = FetchType.LAZY,optional=false)
+	@JoinColumn(name = "bierid")
 	private Bier bier;
 	
 	public BestelBonLijnPK() {
