@@ -1,5 +1,6 @@
 package be.vdab.entities;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Collections;
 import java.util.Set;
@@ -20,7 +21,8 @@ import be.vdab.constraints.Postcode;
 
 @Entity
 @Table(name = "brouwers")
-public class Brouwer {
+public class Brouwer implements Serializable {
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue
 	private long id;

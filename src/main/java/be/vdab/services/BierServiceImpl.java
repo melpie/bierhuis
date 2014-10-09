@@ -12,7 +12,7 @@ import be.vdab.entities.Bier;
 import be.vdab.entities.Brouwer;
 
 @Service
-@Transactional(readOnly = true)
+@Transactional
 class BierServiceImpl implements BierService {
 	private final BierDAO bierDAO;
 

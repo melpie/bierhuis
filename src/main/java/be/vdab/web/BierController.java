@@ -11,6 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import be.vdab.entities.Bier;
 import be.vdab.services.BierService;
+import be.vdab.valueobjects.BierAantal;
 
 @Controller
 @RequestMapping("/bieren")
@@ -36,7 +37,10 @@ class BierController {
 		if (bier == null) {
 			return new ModelAndView(BIER_VIEW, "fout","Kies een bestaand bier!!!");
 		} else {
-			return new ModelAndView(BIER_VIEW, "bier", bierService.read(bierid));
+			BierAantal bierAantal = new BierAantal();
+			bierAantal.setAantal(1);
+			bierAantal.setBierId(bier.getId());
+			return new ModelAndView(BIER_VIEW, "bier", bierService.read(bierid)).addObject("bierAantal",bierAantal);
 		}
 	}	
 

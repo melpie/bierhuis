@@ -1,6 +1,10 @@
 package be.vdab.entities;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.Collections;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -8,6 +12,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 import javax.persistence.Table;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.Min;
@@ -17,7 +23,8 @@ import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
 @Table(name="bieren")
-public class Bier {
+public class Bier implements Serializable {
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue
 	private long id;
@@ -31,25 +38,33 @@ public class Bier {
 	@Min(0)
 	@Digits(integer = 3, fraction = 2)
 	private BigDecimal prijs;
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.LAZY, optional=false)
 	@JoinColumn(name = "brouwerid")
 	private Brouwer brouwer;
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.LAZY, optional=false)
 	@JoinColumn(name = "soortid")
 	private Soort soort;
+	@OneToMany(mappedBy="bier", fetch = FetchType.EAGER)
+	@OrderBy("bestelbonId")
+	private Set<BestelBonLijn> bestelBonLijnen;
 
-	public Bier() {
+	protected Bier() {
 	}
 
 	public Bier(String naam, BigDecimal alcohol, BigDecimal prijs) {
 		this.naam = naam;
 		this.alcohol = alcohol;
 		this.prijs = prijs;
+		bestelBonLijnen = new LinkedHashSet<BestelBonLijn>();
 	}
 	
-	public Bier(long id, String naam, BigDecimal alcohol, BigDecimal prijs) {
-		this(naam,alcohol,prijs);
-		this.id = id;
+	public Bier(String naam, BigDecimal alcohol, BigDecimal prijs, Set<BestelBonLijn> bestelBonLijnen) {
+		this.naam = naam;
+		this.alcohol = alcohol;
+		this.prijs = prijs;
+		for (BestelBonLijn b : bestelBonLijnen) { 
+			addBestelBonLijn(b);
+		}
 	}
 	
 	public void setId(long id) {
@@ -111,5 +126,45 @@ public class Bier {
 			soort.addBier(this);
 		}
 	}
+	
+	public Set<BestelBonLijn> getBestelBonLijnen() {
+		return Collections.unmodifiableSet(bestelBonLijnen);
+	}
+	
+	public void addBestelBonLijn(BestelBonLijn bestelBonLijn) {
+		bestelBonLijnen.add(bestelBonLijn);
+		if (bestelBonLijn.getBier() != this) {
+			bestelBonLijn.setBier(this);
+		}
+	}
+	
+	public void removeBestelBonLijn(BestelBonLijn bestelBonLijn) {
+		bestelBonLijnen.remove(bestelBonLijn);
+		if (bestelBonLijn.getBier() == this) {
+			bestelBonLijn.setBier(null);
+		}
+	}
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + (int) (id ^ (id >>> 32));
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Bier other = (Bier) obj;
+		if (id != other.id)
+			return false;
+		return true;
+	}	
+	
 }

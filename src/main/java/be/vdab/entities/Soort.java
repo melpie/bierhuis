@@ -1,5 +1,6 @@
 package be.vdab.entities;
 
+import java.io.Serializable;
 import java.util.Collections;
 import java.util.Set;
 
@@ -14,7 +15,8 @@ import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
 @Table(name = "soorten")
-public class Soort {
+public class Soort implements Serializable {
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue
 	private long id;

@@ -9,7 +9,7 @@ import be.vdab.dao.BrouwerDAO;
 import be.vdab.entities.Brouwer;
 
 @Service
-@Transactional(readOnly = true)
+@Transactional
 class BrouwerServiceImpl implements BrouwerService {
 	private final BrouwerDAO brouwerDAO;
 
