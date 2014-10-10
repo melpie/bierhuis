@@ -25,7 +25,7 @@ class BierController {
 	BierController(BierService bierService) {
 		this.bierService = bierService;
 	}
-
+	
 	@RequestMapping(method = RequestMethod.GET)
 	ModelAndView findAll() {
 		return new ModelAndView(BIEREN_VIEW, "bieren", bierService.findAllOrderByAlcohol(new BigDecimal(0), new BigDecimal(100)));
@@ -38,7 +38,6 @@ class BierController {
 			return new ModelAndView(BIER_VIEW, "fout","Kies een bestaand bier!!!");
 		} else {
 			BierAantal bierAantal = new BierAantal();
-			bierAantal.setAantal(1);
 			bierAantal.setBierId(bier.getId());
 			return new ModelAndView(BIER_VIEW, "bier", bierService.read(bierid)).addObject("bierAantal",bierAantal);
 		}

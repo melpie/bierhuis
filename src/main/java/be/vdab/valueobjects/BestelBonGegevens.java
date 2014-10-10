@@ -2,16 +2,22 @@ package be.vdab.valueobjects;
 
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 import be.vdab.constraints.Postcode;
 
 public class BestelBonGegevens {
 
+	@NotBlank
 	private String naam;
+	@NotBlank
 	private String straat;
+	@NotBlank
 	private String huisnummer;
 	@NotNull
 	@Postcode
 	private Integer postcode;
+	@NotBlank
 	private String gemeente;
 	
 	public BestelBonGegevens(){}

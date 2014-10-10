@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.IdClass;
 import javax.persistence.Table;
 
+import be.vdab.valueobjects.BestelBonLijnPK;
+
 @Entity
 @Table(name = "bestelbonlijnen")
 //@IdClass(BestelBonLijnPK.class)

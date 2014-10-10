@@ -45,31 +45,31 @@
 	<c:url value='/winkelwagen' var='url' />
 	<form:form action="${url}" commandName='bestelBonGegevens' method='get'>
 		<form:label path='naam'>
-			<b>Naam</b>
+			<b>Naam</b> <form:errors path='naam' class='fout'/>
 		</form:label>
 		<br>
 		<form:input path='naam' autofocus='true' />
 		<br>
 		<form:label path='straat'>
-			<b>Straat</b>
+			<b>Straat</b> <form:errors path='straat' class='fout'/>
 		</form:label>
 		<br>
 		<form:input path='straat' autofocus='true' />
 		<br>
 		<form:label path='huisnummer'>
-			<b>Huisnummer</b>
+			<b>Huisnummer</b> <form:errors path='huisnummer' class='fout'/>
 		</form:label>
 		<br>
 		<form:input path='huisnummer' autofocus='true' />
 		<br>
 		<form:label path='postcode'>
-			<b>Postcode</b>
+			<b>Postcode</b> <form:errors path='postcode' class='fout'/>
 		</form:label>
 		<br>
 		<form:input path='postcode' autofocus='true' />
 		<br>
 		<form:label path='gemeente'>
-			<b>Gemeente</b>
+			<b>Gemeente</b> <form:errors path='gemeente' class='fout'/>
 		</form:label>
 		<br>
 		<form:input path='gemeente' autofocus='true' />

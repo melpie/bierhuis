@@ -1,4 +1,4 @@
-package be.vdab.entities;
+package be.vdab.valueobjects;
 
 import java.io.Serializable;
 
@@ -7,6 +7,9 @@ import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+
+import be.vdab.entities.BestelBon;
+import be.vdab.entities.Bier;
 
 @Embeddable
 public class BestelBonLijnPK implements Serializable {

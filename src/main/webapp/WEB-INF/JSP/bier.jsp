@@ -47,7 +47,9 @@
 			<br>
 			<c:url value='/winkelwagen' var='url'/>
 			<form:form action="${url}" commandName='bierAantal' method='get'>
-				<form:label path='aantal'><b>Aantal</b></form:label>
+				<form:label path='aantal'>
+					<b>Aantal</b> <form:errors path='aantal' class='fout'/>
+				</form:label>
 				<br>
 				<form:input path='aantal' autofocus='true'/>
 				<form:input path='bierId' value="${bier.id}" type="hidden"/>

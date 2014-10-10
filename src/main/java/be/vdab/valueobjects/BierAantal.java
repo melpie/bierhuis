@@ -1,5 +1,6 @@
 package be.vdab.valueobjects;
 
+import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
@@ -7,7 +8,9 @@ public class BierAantal {
 
 	@NotNull
 	@Min(1)
-	private int aantal;
+	private Integer aantal;
+	@Min(4)
+	@Max(1542)
 	private long bierId;
 	
 	public BierAantal() {}
@@ -17,11 +20,11 @@ public class BierAantal {
 		this.bierId = bierId;
 	}
 
-	public int getAantal() {
+	public Integer getAantal() {
 		return aantal;
 	}
 
-	public void setAantal(int aantal) {
+	public void setAantal(Integer aantal) {
 		this.aantal = aantal;
 	}
 
