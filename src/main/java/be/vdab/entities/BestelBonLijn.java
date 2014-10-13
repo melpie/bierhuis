@@ -4,28 +4,16 @@ import java.io.Serializable;
 
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.IdClass;
 import javax.persistence.Table;
 
 import be.vdab.valueobjects.BestelBonLijnPK;
 
 @Entity
 @Table(name = "bestelbonlijnen")
-//@IdClass(BestelBonLijnPK.class)
 public class BestelBonLijn implements Serializable {
 	private static final long serialVersionUID = 1L;
 	int aantal;
-	
-//	@Id
-//	@ManyToOne(fetch = FetchType.LAZY,optional=false)
-//	@JoinColumn(name = "bestelbonid")
-//	private BestelBon bestelBon;
-//	
-//	@Id
-//	@ManyToOne(fetch = FetchType.LAZY,optional=false)
-//	@JoinColumn(name = "bierid")
-//	private Bier bier;
-	
+		
 	@EmbeddedId
 	BestelBonLijnPK key;
 		

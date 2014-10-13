@@ -7,7 +7,7 @@
 <!doctype html>
 <html lang='nl'>
 <head>
-<title>Bieren van ${bieren[0].brouwer.naam}</title>
+<title>${bieren[0].soort.naam}</title>
 <link rel='stylesheet' href='${contextPath}/styles/default.css'>
 <link rel='stylesheet' href='//cdn.datatables.net/1.10.3/css/jquery.dataTables.min.css'>
 </head>
@@ -25,7 +25,7 @@
 
 		<c:otherwise>
 	
-			<h1>${bieren[0].brouwer.naam}</h1>
+			<h1>${bieren[0].soort.naam}</h1>
 		
 			<table id="bieren" class='opsomming'>
 			
@@ -42,13 +42,13 @@
 					<spring:url var='bierURL' value='/bieren/{id}'>
 						<spring:param name='id' value='${bier.id}' />
 					</spring:url>
-					<spring:url var='soortURL' value='/soort/{id}'>
-						<spring:param name='id' value='${bier.soort.id}' />
+					<spring:url var='brouwerURL' value='/brouwers/{id}'>
+						<spring:param name='id' value='${bier.brouwer.id}' />
 					</spring:url>
 					<tr>
 						<td align="center"><a href='${bierURL}'>${bier.naam}</a></td>
-						<td align="center"> ${bier.brouwer.naam} </td> 
-						<td align="center"><a href='${soortURL}'>${bier.soort.naam}</a></td> 
+						<td align="center"><a href='${brouwerURL}'>${bier.brouwer.naam}</a></td> 
+						<td align="center"> ${bier.soort.naam} </td> 
 						<td align="center"> ${bier.alcohol}% </td>
 					</td>
 					</tr>

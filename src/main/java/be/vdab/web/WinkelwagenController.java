@@ -17,9 +17,9 @@ import org.springframework.web.servlet.ModelAndView;
 import be.vdab.entities.BestelBon;
 import be.vdab.entities.BestelBonLijn;
 import be.vdab.entities.Bier;
+import be.vdab.entities.User;
 import be.vdab.services.BestellingService;
 import be.vdab.services.BierService;
-import be.vdab.valueobjects.BestelBonGegevens;
 import be.vdab.valueobjects.BestelBonLijnPK;
 import be.vdab.valueobjects.BierAantal;
 
@@ -43,23 +43,23 @@ public class WinkelwagenController {
 		
 	@RequestMapping(method=RequestMethod.GET)
 	ModelAndView toonWinkelwagen() {
-		BestelBonGegevens bestelBonGegevens = new BestelBonGegevens();
+		User bestelBonGegevens = new User();
 		return new ModelAndView(WINKELWAGEN_VIEW, "winkelwagen", winkelwagen.getBierenInMandje()).addObject("bestelBonGegevens",bestelBonGegevens);
 	}
 	
-	@RequestMapping(method=RequestMethod.GET, params={"aantal", "bierId"})
+	@RequestMapping(method=RequestMethod.POST, params={"aantal", "bierId"})
 	ModelAndView voegToeAanMandje(@Valid BierAantal bierAantal, BindingResult bindingResult) {
 		if(bindingResult.hasErrors()) {
 			return new ModelAndView(BIER_VIEW, "bier", bierService.read(bierAantal.getBierId()));
 		} else {
-			BestelBonGegevens bestelBonGegevens = new BestelBonGegevens();
+			User bestelBonGegevens = new User();
 			winkelwagen.addBier(bierService.read(bierAantal.getBierId()), bierAantal.getAantal());
 			return new ModelAndView(WINKELWAGEN_VIEW, "winkelwagen", winkelwagen.getBierenInMandje()).addObject("bestelBonGegevens",bestelBonGegevens);
 		}
 	}
 	
 	@RequestMapping(method=RequestMethod.GET, params={"naam", "straat", "huisnummer", "postcode", "gemeente"})
-	ModelAndView doeBestelling(@Valid BestelBonGegevens bestelBonGegevens, BindingResult bindingResult) {
+	ModelAndView doeBestelling(@Valid User bestelBonGegevens, BindingResult bindingResult) {
 		if(bindingResult.hasErrors()) {
 			return new ModelAndView(WINKELWAGEN_VIEW, "winkelwagen", winkelwagen.getBierenInMandje()).addObject("bestelBonGegevens",bestelBonGegevens);
 		} else {

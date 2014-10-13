@@ -10,6 +10,7 @@ import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import org.springframework.validation.beanvalidation.SpringValidatorAdapter;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
@@ -27,12 +28,9 @@ public class CreateControllerBeans extends WebMvcConfigurerAdapter {
 
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
-		registry.addResourceHandler("/images/**").addResourceLocations(
-				"/images/");
-		registry.addResourceHandler("/styles/**").addResourceLocations(
-				"/styles/");
-		registry.addResourceHandler("/scripts/**").addResourceLocations(
-				"/scripts/");
+		registry.addResourceHandler("/images/**").addResourceLocations("/images/");
+		registry.addResourceHandler("/styles/**").addResourceLocations("/styles/");
+		registry.addResourceHandler("/scripts/**").addResourceLocations("/scripts/");
 	}
 
 	@Bean
@@ -56,4 +54,8 @@ public class CreateControllerBeans extends WebMvcConfigurerAdapter {
 		return new SpringValidatorAdapter(validatorFactory().getValidator());
 	}
 
+	@Override
+	public void addViewControllers(ViewControllerRegistry registry) {
+		registry.addViewController("/login").setViewName("login");
+	}
 }

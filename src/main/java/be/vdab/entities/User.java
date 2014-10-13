@@ -1,13 +1,27 @@
-package be.vdab.valueobjects;
+package be.vdab.entities;
 
+import java.util.Set;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotBlank;
 
 import be.vdab.constraints.Postcode;
 
-public class BestelBonGegevens {
+@Entity
+@Table(name = "users")
+public class User {
 
+	@Id
+	@NotBlank
+	private String username;
+	@NotBlank
+	private String password;
+	private int enabled;
 	@NotBlank
 	private String naam;
 	@NotBlank
@@ -19,10 +33,15 @@ public class BestelBonGegevens {
 	private Integer postcode;
 	@NotBlank
 	private String gemeente;
+	@OneToMany(mappedBy="key.user")
+	private Set<Authority> authorities;
 	
-	public BestelBonGegevens(){}
+	public User(){}
 
-	public BestelBonGegevens(String naam, String straat, String huisnummer, Integer postcode, String gemeente) {
+	public User(String username, String password, String naam, String straat, String huisnummer, Integer postcode, String gemeente) {
+		this.username = username;
+		this.password = password;
+		this.enabled = 1;
 		this.naam = naam;
 		this.straat = straat;
 		this.huisnummer = huisnummer;
@@ -69,5 +88,29 @@ public class BestelBonGegevens {
 	public void setGemeente(String gemeente) {
 		this.gemeente = gemeente;
 	}
-		
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public int getEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(int enabled) {
+		this.enabled = enabled;
+	}
+			
 }

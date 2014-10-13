@@ -23,6 +23,13 @@
 
 		<c:otherwise>
 
+			<spring:url var='brouwerURL' value='/brouwers/{id}'>
+				<spring:param name='id' value='${bier.brouwer.id}' />
+			</spring:url>
+			<spring:url var='soortURL' value='/soort/{id}'>
+				<spring:param name='id' value='${bier.soort.id}' />
+			</spring:url>
+
 			<h1>${bier.naam}</h1>
 
 			<b>Alcohol</b>
@@ -37,16 +44,16 @@
 			<br>
 			<b>Soort</b>
 			<br>
-			${bier.soort.naam}
+			<a href='${soortURL}'>${bier.soort.naam}</a>
 			<br>
 			<br>
 			<b>Brouwer</b>
 			<br>
-			${bier.brouwer.naam}
+			<a href='${brouwerURL}'>${bier.brouwer.naam}</a>
 			<br>
 			<br>
 			<c:url value='/winkelwagen' var='url'/>
-			<form:form action="${url}" commandName='bierAantal' method='get'>
+			<form:form action="${url}" commandName='bierAantal' method='post'>
 				<form:label path='aantal'>
 					<b>Aantal</b> <form:errors path='aantal' class='fout'/>
 				</form:label>

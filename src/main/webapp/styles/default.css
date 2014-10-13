@@ -33,6 +33,18 @@ ul.opsomming li:nth-child(odd) {
 	background-color: #C2C2B8;
 }
 
+table.opsomming thead tr th {
+	background-color: #E9BD9C;	
+}
+
+table.opsomming tr:nth-child(even) {
+	background-color: #E6B85C;	
+}
+
+table.opsomming tr:nth-child(odd) {
+	background-color: #C2C2B8;	
+}
+
 a:link {
    	text-decoration: none;
 	color: #003300;	

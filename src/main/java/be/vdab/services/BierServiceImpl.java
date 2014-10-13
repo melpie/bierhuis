@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import be.vdab.dao.BierDAO;
 import be.vdab.entities.Bier;
 import be.vdab.entities.Brouwer;
+import be.vdab.entities.Soort;
 
 @Service
 @Transactional
@@ -54,6 +55,11 @@ class BierServiceImpl implements BierService {
 	@Override
 	public Iterable<Bier> findByBrouwer(Brouwer brouwer) {
 		return bierDAO.findByBrouwerIsOrderByNaamAsc(brouwer);
+	}
+	
+	@Override
+	public Iterable<Bier> findBySoort(Soort soort) {
+		return bierDAO.findBySoortIsOrderByNaamAsc(soort);
 	}
 
 	@Override
