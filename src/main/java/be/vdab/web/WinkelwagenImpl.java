@@ -27,4 +27,9 @@ public class WinkelwagenImpl implements Winkelwagen, Serializable {
 	public void addBier(Bier bier, int aantal) {
 		bierenInMandje.put(bier, aantal);
 	}	
+	
+	public void removeBieren() {
+		bierenInMandje.clear();
+	}
+	
 }

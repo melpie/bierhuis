@@ -8,5 +8,6 @@ public interface Winkelwagen {
 	
 	Map<Bier, Integer> getBierenInMandje();
 	void addBier(Bier bier,int aantal);
+	void removeBieren();
 	
 }

@@ -26,7 +26,7 @@
 			<b>Paswoord</b> <form:errors path='password' class='fout'/>
 		</form:label>
 		<br>		
-		<form:input path='password' autofocus='true' />
+		<form:input path='password' autofocus='true' type='password'/>
 		<form:input path='enabled' value="1" type="hidden"/>
 		<br>
 		<form:label path='naam'>

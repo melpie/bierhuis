@@ -17,6 +17,14 @@
 
 	<h1>Winkelwagen</h1>
 
+	<c:choose>
+	
+	<c:when test="${winkelwagen.size() < 1}">
+		Uw winkelwagen is leeg.
+	</c:when>
+
+	<c:otherwise>	
+
 	<table>
 
 		<thead>
@@ -41,41 +49,15 @@
 	</table>
 
 	<br>
-	<br>
+	
 	<c:url value='/winkelwagen' var='url' />
-	<form:form action="${url}" commandName='bestelBonGegevens' method='get'>
-		<form:label path='naam'>
-			<b>Naam</b> <form:errors path='naam' class='fout'/>
-		</form:label>
-		<br>
-		<form:input path='naam' autofocus='true' />
-		<br>
-		<form:label path='straat'>
-			<b>Straat</b> <form:errors path='straat' class='fout'/>
-		</form:label>
-		<br>
-		<form:input path='straat' autofocus='true' />
-		<br>
-		<form:label path='huisnummer'>
-			<b>Huisnummer</b> <form:errors path='huisnummer' class='fout'/>
-		</form:label>
-		<br>
-		<form:input path='huisnummer' autofocus='true' />
-		<br>
-		<form:label path='postcode'>
-			<b>Postcode</b> <form:errors path='postcode' class='fout'/>
-		</form:label>
-		<br>
-		<form:input path='postcode' autofocus='true' />
-		<br>
-		<form:label path='gemeente'>
-			<b>Gemeente</b> <form:errors path='gemeente' class='fout'/>
-		</form:label>
-		<br>
-		<form:input path='gemeente' autofocus='true' />
-		<br>
-		<input type='submit' value='Toevoegen'>
+	<form:form action="${url}" method='post'>
+		<input type='submit' value='Bestelling bevestigen'>
 	</form:form>
+	
+	</c:otherwise>
+	
+	</c:choose>
 
 </body>
 </html>

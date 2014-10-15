@@ -15,7 +15,19 @@
 
 	<c:import url="/WEB-INF/JSP/menu.jsp" />
 
-	<h1>Je winkelwagentje is bevestigd als bestelbon ${bestelBon.id}</h1>
+	<h1>Je winkelwagentje is bevestigd als bestelbon ${bestelBon.id}.</h1>
+	
+	<h3>Bieren:</h3>
+	
+	<c:forEach var="bestelBonLijn" items="${bestelBonLijnen}">
+	${bestelBonLijn.bier.naam} (${bestelBonLijn.aantal}) <br>
+	</c:forEach>
+	
+	<h3>Op naam van:</h3>
+	
+	${bestelBon.naam}<br>
+	${bestelBon.straat} ${bestelBon.huisNr}<br>
+	${bestelBon.postcode} ${bestelBon.gemeente}	
 
 </body>
 </html>

@@ -12,9 +12,11 @@
 		<li><a href="<c:out value='${welkomURL}'/>">Welkom</a></li>
 		<li><a href="<c:out value='${brouwersURL}'/>">Brouwers</a></li>
 		<li><a href="<c:out value='${bierenURL}'/>">Bieren</a></li>
-		<li><a href="<c:out value='${winkelwagenURL}'/>">Winkelwagen</a></li>
+		<security:authorize access='isAuthenticated()'>
+			<li><a href="<c:out value='${winkelwagenURL}'/>">Winkelwagen</a></li>
+		</security:authorize>
 		<security:authorize access='isAnonymous()'>
-		<li><a href="<c:url value='/login'/>">Aanmelden</a></li>
+			<li><a href="<c:url value='/login'/>">Aanmelden</a></li>
 		</security:authorize>
 	</ul>
 </div>
